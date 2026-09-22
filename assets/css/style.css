@@ -426,6 +426,29 @@ h3 {
   max-height: 60px;
 }
 
+#places .places-intro {
+  margin-bottom: 2rem;
+}
+
+#places .travel-card {
+  margin-bottom: 30px;
+}
+
+#places .travel-card .card-content {
+  padding: 24px;
+}
+
+#places .travel-card h4 {
+  font-size: 1.4rem;
+  margin: 0 0 1rem;
+}
+
+.travel-map {
+  border: 0;
+  height: 260px;
+  width: 100%;
+}
+
 .card-action span {
   font-size: 85%;
   color: #666;
