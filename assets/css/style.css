@@ -426,6 +426,38 @@ h3 {
   max-height: 60px;
 }
 
+#projects .project-card {
+  min-height: 450px;
+}
+
+#projects .project-image {
+  align-items: center;
+  background: #f5f3ff;
+  display: flex;
+  height: 220px;
+  justify-content: center;
+}
+
+#projects .project-image img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+#projects .project-card .card-content p {
+  margin-bottom: 1rem;
+}
+
+#load-more-projects {
+  background-color: #4c1d95;
+  margin-bottom: 2rem;
+}
+
+#load-more-projects:hover,
+#load-more-projects:focus {
+  background-color: #5b21b6;
+}
+
 #places .places-intro {
   margin-bottom: 2rem;
 }

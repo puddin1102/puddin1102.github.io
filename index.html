@@ -376,77 +376,9 @@
     <section id="projects" class="section scrollspy">
       <h3 class="page-title white-text teal">Projects</h3>
       <div class="container">
-        <div class="row">
-
-          <div class="col s12 m6 l4">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="dog classification cnn" src="/assets/img/dog-cnn.png" style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">Dog Classification CNN<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  A convolutional neural network for classifying dog breeds
-                </p>
-              </div>
-              <div class="card-reveal">
-                <!-- TODO: change this -- only close button -->
-                <!-- <span class="card-title brown-text">Accomplishments<i class="mdi-navigation-close right"></i></span> -->
-                <span class="card-title grey-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li><b>Tools:</b> Python, PyTorch, Alexnet</li>
-                  <li>Trained a CNN model to classify dog breeds with 85% accuracy.</li>
-                  <li>Preprocessed and augmented image data for better model performance.</li>
-
-
-                </ul>
-                <div class="card-action">
-                  <a aria-label="Visit the GitHub repo for  project" href="https://github.com/puddin1102/APS360-FinalProject-Breed-Classification"
-                    target="_blank" data-position="top" data-tooltip="View Source"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-github"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col s12 m6 l4">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="map app" src="/assets/img/carto-ui.png" style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">Carto<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  A map visualization app based on C++
-                </p>
-              </div>
-              <div class="card-reveal">
-                <!-- TODO: change this -- only close button -->
-                <!-- <span class="card-title brown-text">Accomplishments<i class="mdi-navigation-close right"></i></span> -->
-                <span class="card-title grey-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li><b>Tools:</b> C++, GTK</li>
-                  <li>Visualize map data and perform spatial analysis.</li>
-                  <li>Implement interactive map features and user-friendly interface.</li>
-                  <li>Added neighbourhood crime data visualization.</li>
-
-                </ul>
-                <div class="card-action">
-                  <a aria-label="Visit the GitHub repo for  project" href="https://github.com/puddin1102/ECE297Carto"
-                    target="_blank" data-position="top" data-tooltip="View Source"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-github"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ************* -->
+        <div id="project-list" class="row" aria-live="polite"></div>
+        <div class="center-align">
+          <button id="load-more-projects" class="waves-effect waves-light btn teal" type="button">Load More</button>
         </div>
       </div>
     </section>
@@ -677,6 +609,82 @@
       typeSpeed: 80,
       backSpeed: 40
     });
+  </script>
+
+  <script type="text/javascript">
+    const projects = [
+      {
+        title: 'Dog Classification CNN',
+        description: 'A convolutional neural network for classifying dog breeds.',
+        tools: 'Python, PyTorch, AlexNet',
+        image: '/assets/img/dog-cnn.png',
+        imageAlt: 'Dog classification CNN project',
+        url: 'https://github.com/puddin1102/APS360-FinalProject-Breed-Classification',
+        linkLabel: 'View on GitHub'
+      },
+      {
+        title: 'Carto',
+        description: 'A C++ map visualization app for spatial analysis and interactive exploration.',
+        tools: 'C++, GTK',
+        image: '/assets/img/carto-ui.png',
+        imageAlt: 'Carto map application interface',
+        url: 'https://github.com/puddin1102/ECE297Carto',
+        linkLabel: 'View on GitHub'
+      },
+      {
+        title: 'ECE243 Final Project',
+        description: 'A final project for ECE243, implemented in C.',
+        tools: 'C',
+        image: '/assets/img/cpp-logo-300x300.png',
+        imageAlt: 'C programming project',
+        url: 'https://github.com/puddin1102/ECE243_Final_Proj',
+        linkLabel: 'View on GitHub'
+      },
+      {
+        title: 'OpenDRSAI',
+        description: 'A document-assisting AI agent and research platform.',
+        tools: 'TypeScript, Python, Docker',
+        image: '/assets/img/project-AI.jpg',
+        imageAlt: 'OpenDRSAI artificial intelligence project',
+        url: 'https://opendrsai.ihep.ac.cn/',
+        linkLabel: 'Visit website'
+      }
+    ];
+
+    const projectList = document.getElementById('project-list');
+    const loadMoreProjectsButton = document.getElementById('load-more-projects');
+    let visibleProjectCount = 2;
+
+    function projectCard(project) {
+      return `
+        <div class="col s12 m6">
+          <article class="card project-card">
+            <div class="card-image project-image">
+              <img src="${project.image}" alt="${project.imageAlt}">
+            </div>
+            <div class="card-content">
+              <span class="card-title teal-text">${project.title}</span>
+              <p>${project.description}</p>
+              <p><strong>Tools:</strong> ${project.tools}</p>
+            </div>
+            <div class="card-action">
+              <a href="${project.url}" target="_blank" rel="noopener noreferrer" class="teal-text hoverline">${project.linkLabel}</a>
+            </div>
+          </article>
+        </div>`;
+    }
+
+    function renderProjects() {
+      projectList.innerHTML = projects.slice(0, visibleProjectCount).map(projectCard).join('');
+      loadMoreProjectsButton.hidden = visibleProjectCount >= projects.length;
+    }
+
+    loadMoreProjectsButton.addEventListener('click', function () {
+      visibleProjectCount = projects.length;
+      renderProjects();
+    });
+
+    renderProjects();
   </script>
 
 
