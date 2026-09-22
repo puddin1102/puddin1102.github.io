@@ -481,6 +481,67 @@ h3 {
   width: 100%;
 }
 
+#meow .meow-intro {
+  margin-bottom: 1.5rem;
+}
+
+.meow-gallery {
+  background: #f5f3ff;
+  border: 2px solid #ddd6fe;
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 1rem 0;
+}
+
+.meow-gallery:focus {
+  outline: 3px solid #5b21b6;
+  outline-offset: 4px;
+}
+
+.meow-track,
+.meow-set {
+  display: flex;
+  gap: 1rem;
+}
+
+.meow-track {
+  animation: meow-scroll 42s linear infinite;
+  width: max-content;
+}
+
+.meow-gallery:hover .meow-track,
+.meow-gallery:focus .meow-track {
+  animation-play-state: paused;
+}
+
+.meow-photo {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 14px rgba(76, 29, 149, 0.18);
+  flex: 0 0 230px;
+  height: 300px;
+  margin: 0;
+  overflow: hidden;
+}
+
+.meow-photo img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+@keyframes meow-scroll {
+  to {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .meow-track {
+    animation: none;
+  }
+}
+
 .card-action span {
   font-size: 85%;
   color: #666;
